@@ -1,0 +1,6 @@
+/var/log/orders.log
+/etc/stove/config.xml
+/Users/baker/recipes/database_version3.yaml
+/Users/baker/recipes/database.xml
+/etc/systemd/system/very_important/stash_location.jpg
+/dsfjhdjkfhskdjfh

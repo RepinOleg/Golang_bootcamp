@@ -1,0 +1,9 @@
+go 1.22.0
+
+use ./ex01
+
+use ./ex00
+
+use ./ex02
+
+use ./ex03

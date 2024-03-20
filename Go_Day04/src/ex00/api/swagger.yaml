@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  title: Candy Server
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /buy_candy:
+    post:
+      operationId: buyCandy
+      requestBody:
+        description: summary of the candy order
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/order'
+        required: false
+        x-exportParamName: Order
+      responses:
+        "201":
+          description: purchase succesful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_201'
+        "400":
+          description: some error in input data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_400'
+        "402":
+          description: not enough money
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_402'
+      x-codegen-request-body-name: order
+components:
+  schemas:
+    inline_response_201:
+      type: object
+      properties:
+        thanks:
+          type: string
+        change:
+          type: integer
+      example:
+        thanks: thanks
+        change: 0
+    order:
+      required:
+      - candyCount
+      - candyType
+      - money
+      type: object
+      properties:
+        money:
+          minimum: 0
+          type: integer
+          description: amount of money put into vending machine
+        candyType:
+          type: string
+          description: kind of candy
+        candyCount:
+          type: integer
+          description: number of candy
+    inline_response_400:
+      type: object
+      properties:
+        error:
+          type: string
+    inline_response_402:
+      type: object
+      properties:
+        error:
+          type: string
+x-original-swagger-version: "2.0"
